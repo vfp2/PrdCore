@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <title>PsiLib Reference</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+  <style type="text/css">
+body
+  {
+  margin: 0;
+  padding: 1em 9.6em 0em 1em;
+  color: #000;
+  background: #fff;
+  font-family: Arial;
+  }
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+ font-family: Arial;
+}
+.csource
+{
+  margin: 0.5em;
+  padding: 1em;
+  font-family: monospace;
+  background: #ffe;
+}
+.sharpsource
+{
+  margin: 0.5em;
+  padding: 1em;
+  font-family: monospace;
+  background: #efe;
+}
+.pysource
+{
+  margin: 0.5em;
+  padding: 1em;
+  font-family: monospace;
+  background: #eef;
+}
+.definition
+{
+  margin: 0.5em;
+  padding: 1em;
+  background: #eee;
+}
+.detail
+{
+  padding: 0 1em;
+}
+div#fixedbox
+  {
+  position: absolute;
+  float: left;
+  top: 1em;
+  right: 1em;
+  width: 8em;
+  background: #eee;
+  }
+div#fixedbox p
+  {
+  margin: 0;
+  padding: 1em;
+  border: 1px outset #999;
+  line-height: 1.4em;
+  text-align: center;
+  color: #000;
+  font-size: 80%;
+  }
+div#fixedbox a
+{
+ display: block;
+// margin: 0 0;
+// border-bottom: 2px groove #999;
+ border-bottom: 0;
+}
+.text
+{
+  padding: 0.5em;
+}
+.groove
+{
+ border-bottom: 2px groove #999;
+ border-top: 2px groove #999;
+ margin: 0.4em 0em 0.2em;
+ font-weight: bold;
+ font-size: 200%;
+ text-indent: 0.5em;
+}
+div#fixedbox a.header
+{
+ font-weight: bold;
+ border-bottom: 2px groove #999;
+ border-top: 2px groove #999;
+ margin-top: 0.8em;
+ 
+}
+div#fixedbox a:first-child
+{
+ margin-top: 0em;
+ 
+}
+@media screen
+  {
+  div#fixedbox
+    {
+    position: fixed;
+    }
+  /* Don't do this at home */
+  * html
+    {
+    overflow-y: hidden;
+    }
+  * html body
+    {
+  margin: 0;
+  padding: 1em 9.6em 0em 1em;
+  color: #000;
+  background: #fff;
+    overflow-y: auto;
+    height: 100%;
+    font-size: 100%;
+    }
+  * html div#fixedbox
+    {
+    position: absolute;  
+    }
+  /* All done. */
+  }
+div#fixedbox a:link { text-decoration: none; color: #444 }
+div#fixedbox a:visited { text-decoration: none; color: #444 }
+div#fixedbox a:hover { background: #F33; color: white }
+
+.crossref
+{
+  display: inline;
+  font-weight: bold;
+}
+a
+{
+  display: inline;
+}
+a.crossref:link { text-decoration: none; color: #444;}
+a.crossref:visited { text-decoration: none; color: #444 }
+a.crossref:hover { background: #F33; color: white }</style>
+  <script type="text/javascript">
+<!--
+/*
+ * This is the function that actually highlights a text string by
+ * adding HTML tags before and after all occurrences of the search
+ * term. You can pass your own tags if you'd like, or if the
+ * highlightStartTag or highlightEndTag parameters are omitted or
+ * are empty strings then the default <font> tags will be used.
+ */
+function doHighlight(bodyText, searchTerm, highlightStartTag, highlightEndTag) 
+{
+  // the highlightStartTag and highlightEndTag parameters are optional
+  if ((!highlightStartTag) || (!highlightEndTag)) {
+    highlightStartTag = "<font style='color:blue; background-color:yellow;'>";
+    highlightEndTag = "</font>";
+  }
+
+ var y = 0;
+  
+  // find all occurences of the search term in the given text,
+  // and add some "highlight" tags to them (we're not using a
+  // regular expression search, because we want to filter out
+  // matches that occur within HTML tags and script blocks, so
+  // we have to do a little extra validation)
+  var newText = "";
+  var i = -1;
+  var lcSearchTerm = searchTerm;
+  var lcBodyText = bodyText;
+
+  while (bodyText.length > 0) {
+    i = lcBodyText.indexOf(lcSearchTerm, i+1);
+    if (i < 0) {
+      newText += bodyText;
+      bodyText = "";
+    } else {
+      // skip anything inside an HTML tag
+      if (bodyText.lastIndexOf(">", i) >= bodyText.lastIndexOf("<", i)) {
+        // skip anything inside a <script> block and anchor block
+        if ((lcBodyText.lastIndexOf("/script>", i) >= lcBodyText.lastIndexOf("<script", i)) && (lcBodyText.lastIndexOf("/a>", i) >= lcBodyText.lastIndexOf("<a", i)) && (lcBodyText.lastIndexOf("/pre>", i) >= lcBodyText.lastIndexOf("<pre", i)))
+        {
+          if ((/\w/.test(bodyText.substr(i-1, 1)) == false) && (/\w/.test(bodyText.substr(i+searchTerm.length, 1)) == false))
+          {
+            newText += bodyText.substring(0, i) + highlightStartTag + bodyText.substr(i, searchTerm.length) + highlightEndTag;
+            bodyText = bodyText.substr(i + searchTerm.length);
+            lcBodyText = bodyText;
+            i = -1;
+          }
+        }
+      }
+    }
+  }
+  
+  return newText;
+}
+
+function prepCrossRef()
+{
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "Open", "<a class=\"crossref\" href=\"#open\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "Close", "<a class=\"crossref\" href=\"#close\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "GetPrdData", "<a class=\"crossref\" href=\"#getprddata\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "ListSources", "<a class=\"crossref\" href=\"#listsources\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "GetSource", "<a class=\"crossref\" href=\"#getsource\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "SetSource", "<a class=\"crossref\" href=\"#setsource\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "GetPrdMode", "<a class=\"crossref\" href=\"#getprdmode\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "SetPrdMode", "<a class=\"crossref\" href=\"#setprdmode\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "GetPsiMode", "<a class=\"crossref\" href=\"#getpsimode\" >", "</a>");
+  document.body.innerHTML = doHighlight(document.body.innerHTML, "SetPsiMode", "<a class=\"crossref\" href=\"#setpsimode\" >", "</a>");
+}
+-->
+  </script>
+</head>
+
+<body onload="prepCrossRef();">
+
+<a name="prdevices"></a> 
+<div class="groove">Introduction</div>
+Psigenics’ Psycho-Responsive Devices (patents pending) and Consciousness Technology are based on the principle that a quantum mechanical superposition of states is “collapsed” by an appropriate observation process. In simple terms, in the quantum realm the result of a “coin toss” doesn’t exist until someone looks at it. Then it’s either heads or tails. A large number of experiments over many years have demonstrated that conscious intention or mind influence can alter the odds of a quantum mechanical coin toss to favor either heads or tails. The cause of this mental influence is not currently known, but it appears that concentrating on or visualizing a particular result of a quantum mechanical measurement somehow shifts the odds in the intended direction.
+<br /><br />
+Matter is composed of sub-atomic particles, atoms and molecules. All of these are constantly subject to quantum mechanical manifestations. Usually these building blocks of physical reality are dominated by what appear to be random fluctuations in the “quantum vacuum.” This just means when there is no specific direction or mental influence, all the “quantum coin tosses” are fair. The chaos at the atomic level just averages out, and matter behaves as expected. On the other hand, under a coherent field of mental influence, a number of particles, atoms or molecules can interact in a statistically anomalous way. The result of this “unusual” collective interaction can be as simple as briefly causing the number of ones being produced by a true random number generator to either increase or decrease. Or, it can be as complex as stimulating hundreds of neurons in a brain to shift their nearly random firings so their combined outputs coalesce into patterns that are experienced as a recognizable thought.
+<br /><br />
+A Psycho-Responsive Device (PRD) includes a source of true random numbers. These numbers or binary bits are processed by algorithms that enhance or amplify the normally undetectable patterns resulting from a mental influence. The amplified signals are further processed by a cluster of Artificial Neural Networks (ANN’s) structured and interconnected to emulate certain brain functions in order to distinguish mentally influenced data from the usual random sequences. The output of the ANN processing is transformed to a single stream of normally-distributed numbers with a mean of zero and a standard deviation of one.
+<br /><br />
+In this form they are easily combined and manipulated in the same way as any collection of independent normal numbers. For example, a block of these numbers can be combined into a single output by summing the desired number of individual outputs and dividing by the square root of the number of outputs in the sum. Normal numbers can be either added or subtracted, either individually or as combined blocks, without altering their statistics (in the absence of mental influence).
+<br /><br />
+
+<a name="prdproc"></a>
+<div class="groove">PRD Data Processing</div>
+The Psigenics PrdCore API provides two primary data outputs: psi data and target data. Psi data or samples are normally-distributed (Gaussian) numbers with a mean of zero and a standard deviation of one. These numbers are specially generated and processed to indicate the result of an influence of mind or specific mental intention. Target data or bits are either fixed or generated by a true random number generator processed to be relatively insensitive to mental influence. Target data are binary numbers with a value of +1 or -1. Target bits are provided to compare with psi data to see whether the two match (a “Hit”) or not (a “Miss”).
+<br /><br />
+There are three types of target data, which are related to three psi “modes.” The three psi modes are psychokinesis, clairvoyance and precognition. The most important difference between the target data and their associated modes is the timing of the generation of targets relative to generation of psi data with which they will be compared. Psychokinesis mode is meant to detect a direct alteration of the generated psi data to conform to a fixed pattern or pre-defined bias. The targets for this mode are a constant +1 (or -1). Clairvoyance mode is intended to detect patterns in psi data that reveal currently existing, but hidden information. Targets for this mode are always generated before the beginning of a trial and prior to the creation of any psi data to which it will be compared. Precognition mode is intended to detect patterns in psi data that reveal or predict future information. Targets for this mode are always generated after the end of a trial and subsequent to the creation of any psi data to which it will be compared. Care must be exercised to maintain the proper timing relationships for clairvoyance and precognition modes. When psi data samples are combined (as described below) prior to comparing to a target, only the first target from the combined block of data is to be used for clairvoyance mode. For combined precognition mode psi data, use only the last target from the combined block. Targets for clairvoyance and precognition modes are true random binary bits processed to be relatively insensitive to mental influence.
+<br /><br />
+Psi data must be converted to an appropriate binary form of +1 or -1 before it can be compared to target bits. This is done by comparing the psi sample to a threshold of 0.0. Pseudo code: If psi sample > 0.0, output 1, else output -1. The thresholded psi data can be compared to a target bit either by multiplying the two or by testing for equality with output of +1 or -1 for true or false. The +1 or -1 result of a comparison of a psi data sample and a target bit is denoted a “Hit” or “Miss” respectively
+<br /><br />
+The responsivity of any application based on a PRD will generally increase as the number of psi data samples used in the computation of a result increases. The specific responsivity with a particular processing method will be approximately proportional to the square root of the number of samples used. This must be balanced against a general requirement for real-time feedback to the user or player (the “operator”). Real-time is defined as it typically is in biofeedback applications, that is, less than one second between the measurement, or generation of data and output of the feedback. Experience indicates that one second is too long an interval for best results in most PRD applications. Data taking intervals of less than 0.5 seconds is better, and 0.2 to 0.25 seconds seems to be optimal. Exceptions to this guideline occur when psi data is generated and used continuously or when real-time operator feedback is not possible.
+<br /><br />
+Real-time feedback is not possible when the operator does not have access to, or is remote from a feedback device, or more commonly, when a prediction of future information is being attempted. In either case, the operator must first be well trained using a device or program that does provide feedback. This builds the necessary skill level and confidence to operate “blind.” Continuous production of psi data is used when an operator cannot provide a signal to synchronize or initiate a measurement (a “trial”), or when the timing of the detection of mental influence is unknown or unpredictable.
+<br /><br />
+Psi data can be used without target data for applications that require either high-speed data (above 875 samples per second) or use psi data in a form other than binary. The normally-distributed psi data can be converted to uniformly-distributed data on the interval (0, 1). This is done using a curve-fit approximation (z-to-p function) to the cumulative normal distribution function. In simple terms, the z-to-p function provides a linear output between 0 and 1 that can be used to select objects, symbols, coordinates or characters that have either equal or arbitrary probability of occurring. This will be described in more detail in one of the examples below. The psi mode is effectively psychokinesis when targets are not used.
+<br /><br />
+Successful applications using Psigenics PRD technology depend on a variety of basic considerations. The presentation must be emotionally engaging and the intended outcome highly interesting or important to the operator/user/player. Appropriate real-time feedback must be supplied either at all times or during practice/play sessions. Effective feedback typically includes at least visual and probably auditory forms. The processing of psi and target data must be optimized as much as possible to accomplish the intended purpose of the application. Operator documentation or instructions must be clear and concise, but also simple. It is helpful to have some method of conveying operator progress and achievement. This may include immediate or short-term scoring as well as long-term results.
+<br /><br />
+
+<a name="appexamples"></a>
+<div class="groove">Application Examples</div>
+Lottery Picker:
+Picking lottery numbers is a prediction of future information. This has several implications for the presentation and type of data processing. One immediate consideration is that real-time player feedback is not possible. In this circumstance, a method must be provided for practice and training of the player. A general training tool is the Psigenics PsiTrainer. However, a specific training tool or game would look and feel more like a lottery drawing with the numbers drawn using target data from the PrdCore API. The practice predictions could start with the simplest and most immediate form of a coin flip. Predicting a coin flip is a one-bit binary prediction. This can be accomplished by a variety of combinations of psi data, target data and processing methods: 
+<br /><br />
+When the player initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 175 samples (0.2 seconds at 875Hz) using precognition mode. 
+1)	Combine the 175 psi samples into one number by adding them all and dividing the sum by the square root of 175. Threshold the resultant number at 0.0 to produce a prediction of +1 for heads and -1 for tails. Compare the prediction with the last target bit in the block of samples (the random coin toss). Provide player feedback by showing the prediction and the random coin toss. Note: The random coin toss can also be provided by a second player input initiating the call of a single psi data sample and using the target bit. This two-step process slows down the process and increases the time between prediction and testing the prediction.
+2)	Divide the 175 psi samples into 5 sub-blocks of 35 samples each. Combine the data in the 5 sub-blocks into 5 numbers by adding and dividing by the square root of 35. Threshold the five resultant numbers and compare each with the final target bit from each of the 5 sub-blocks by multiplying the targets by the corresponding thresholded numbers. Find the majority vote of the 5 hit/miss comparisons by adding the 5 +1/-1 results. The prediction is heads if the sum is >2, else the prediction is tails. Provide feedback as indicated in section 1.
+3)	Threshold all 175 psi samples. Compare with the corresponding 175 target bits. Find the majority vote of the 175 hit/miss comparisons by adding them all together. The prediction is heads if the sum is >87 ((number of votes -1)/2 – must always be an odd number for majority voting), else the prediction is tails. Provide feedback as indicated in section 1.
+4)	Convert the 175 psi samples to 175 uniform numbers using the z-to-p function. Produce two sums: for each converted uniform number between 0 and 0.5 increment the sum for “tails;” for each number greater than 0.5, increment the sum for “heads.” The prediction corresponds to the sum with the largest count. Provide feedback as indicated in section 1. Note: This method does not use targets. Although this process seems trivial for a binary selection with equal probabilities, it may be extended to any number of predicted categories with equal or arbitrary probabilities. An example would be selecting from the 26 letters in the alphabet with the same probabilities as they are used in the English language.
+<br /><br />
+Predicting the one of six numbers produced by the roll of a die is more interesting and challenging. This may be accomplished in one of the following ways:
+<br /><br />
+1)	When the player initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 175 samples (0.2 seconds at 875Hz) using precognition mode. Combine the 175 psi samples into one number by adding them all and dividing the sum by the square root of 175. Convert the resulting normal number to a uniform number using the z-to-p function. Scale the uniform number by multiplying by 6.0 (the number of equi-probable outcomes). Produce a prediction by taking the ceiling (rounding up to the next highest integer) of the scaled uniform number. Produce a target by the following steps: assemble the last 3 target bits in the block of 175 into a 3-bit integer with the last bit as the MSB, add one to the integer, test that the sum is <7, if true, the target is the sum, if false, repeat the steps of assembling, adding and testing using the next to last 3 target bits, if this fails the test, repeat using earlier target bits until the test is true and a target is produced. Provide player feedback including displaying the prediction and the random die roll. Note: the random die roll can also be provided by a second player input initiating a call of 3 psi data samples and using the target bits as described above. Automatically repeat the call of 3 samples until the test is true and a random die roll (target) is generated. This two-step operation slows down the process and increases the time between making and testing the prediction. There are many alternatives to this target generating method, but this one gives an exact equi-probable distribution.
+2)	When the player initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 186 samples (31 times the number of equi-probable outcomes, 0.213 seconds at 875Hz) using precognition mode. Parse the data into 6 sub-blocks of 31 samples each. The data can be parsed by taking 6 blocks of 31 consecutive samples or by taking the first 6 samples and placing them in the first data position of each of the 6 sub-blocks, then moving the second 6 samples into the second position, etc., until all the data is parsed. The second method reduces time skew between the 6 sub-blocks.
+a)	Combine the 31 samples in each of the 6 sub-blocks into 6 normal numbers by adding them (separately in each sub-block) and dividing by the square root of 31. Determine a prediction by finding the sub-block that resulted in the highest value of the 6 combined normal numbers, with the 6 sub-blocks numbered from 1 to 6 to represent the 6 numbers on the die faces. Or,
+b)	Threshold all the samples in each sub-block, compare each sample to its associated target bit and calculate the majority vote in each sub-block using the processes described above. The majority vote total can range from -31 (all misses) to +31 (all hits) with a mean of 0. The standard deviation for a large number of these majority votes is square root (31) = 5.568 counts. Determine a prediction by finding the sub-block with the highest majority vote count, with the 6 sub-blocks numbered from 1 to 6 to represent the 6 numbers on the die faces. The highest count may be the same for two or more sub-blocks because the sub-block totals are integers within a limited range. It is therefore necessary to be able to resolve ties in the prediction. Two simple ways to resolve a tie require automatically requesting a new block of 186 samples, which are then processed in the same way as the player-initiated request. The results of the new sample can either be combined with the first set of majority vote totals to produce a combined majority vote from two blocks of samples, or the first set of samples can be discarded and only the second set used. This process of taking new blocks of samples is to be repeated until either the accumulated majority votes or the latest majority vote - depending on the method used - indicate a unique highest count in a sub-block. Or,
+c)	Produce a weighted majority vote for each sub-block. Determine a prediction by finding the sub-block that resulted in the highest value of the weighted vote, with the 6 sub-blocks numbered from 1 to 6 to represent the 6 numbers on the die faces. A majority vote can be weighted in a number or ways. The following method uses weights proportional to the log of the individual probabilities. Transform each psi sample to a uniform number by using the z-to-p function. Find the sign (+1 or -1) that will be applied to each weight with the conditional: if uniform number > 0.5, sign is +1, else sign is -1. Produce an x value for each uniform number using the conditional: if uniform number > 0.5, x = 1.0 - uniform number, else x = uniform number. Finally, calculate a y value with the equation: y = log (0.5/x). Each weight is y times its associated sign. The weighted majority vote is the sum of the 31 weights in each sub-block.
+Produce a random die roll (target) as described in section 1 above and compare the prediction with the target. Provide player feedback including displaying the prediction and the random die roll.
+<br /><br />
+The ultimate training for lottery prediction is making a prediction of the same form as the lottery, but which can be tested immediately through a computer-generated “drawing” or target.
+<br /><br />
+1)	When the player initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 220 samples (4 times the number of equi-probable outcomes, 0.251 seconds at 875Hz) using precognition mode. Note: This example is for a drawing of 5 of 55 numbers. Parse the 220 samples into 55 sub-blocks of 4 samples each. Produce a weighted majority vote for each sub-block as described in example 2c above. Sort the results of the weighted majority votes of the 55 sub-blocks labeled 1 to 55 from low to high. The last 5 numbers in the sorted list corresponding to the 5 highest majority vote values are the predicted drawing numbers. Produce a random target drawing by the following steps: assemble the last 32 target bits in the block of 220 into a 32-bit integer with the last bit as the MSB. Use this integer as the seed in a pseudorandom generator to generate 55, 32-bit integers. Label the integers from 1 to 55 in the order they were generated. Sort this 2-dimensional array from low to high. The last 5 numbers in the sorted list corresponding to the 5 largest integer values are the random target drawing numbers. Compare the prediction with the target. Provide player feedback including displaying the prediction and the random target numbers. Note: a more complex system for producing feedback is required, given the large number of possible degrees of success. The simplest would provide 6 levels of feedback for the possible 0 to 5 number of correct predictions. A more responsive feedback might use a weighted score based on the distances of the 5 target numbers from the top of the entire sorted prediction list. For example, count the number of positions from the top of the prediction list to where each of the target numbers appears in the list. A “perfect” score would correspond to an exact match of all 5 numbers, giving a score of 0+1+2+3+4 = 10. The best method of calculating and providing feedback must be determined experimentally.
+2)	When the player initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 220 samples (4 times the number of equi-probable outcomes, 0.251 seconds at 875Hz) using precognition mode. Note: This example is for a drawing of 5 of 55 numbers. Parse the 220 samples into 55 sub-blocks of 4 samples each. Threshold all the samples in each sub-block to produce a thresholded value of +1 for psi samples > 0.5, else -1. Compare each sample to its associated target bit by multiplying the thresholded sample by its target, and calculate the majority vote in each sub-block by adding all the comparison results. The majority vote totals can range from -4 (all misses) to +4 (all hits) in any sub-block. Sort the sub-blocks labeled 1 to 55 low to high, using majority vote counts. The last numbers in this sorted list, corresponding to the highest majority vote counts, are the predicted drawing numbers. Note: it is likely a tie will occur between at least the 5th and 6th highest sub-block counts since the range of majority vote counts is limited. If a tie does occur, it can be resolved by the player initiating another request for a block of 220 samples, processing them the same way as the first block and accumulating the majority vote counts from the second block with those from the first block. If there remains a tie between the 5th and 6th sub-block counts, repeat the request and processing of more blocks of samples until there are 5 sub-block counts that are higher than the remaining 50 sub-blocks. Note: after each request for a block of samples, the player is to receive feedback of the status of the sorted sub-block list, but not the positions of the specific numbers. It is desirable to keep the player’s conscious or subconscious mind from unduly biasing the results by having information about the prediction before it is completed. The player is to continue initiating trials (new requests for blocks of data) until there are 5 unique predicted numbers, and he or she “feels” that the prediction is completed. After this, the player initiates target generation, which causes a request for a block of 32 samples in precognition mode. Assemble the 32 target bits into an integer and produce the target (random target drawing) as described in example 1 above. Compare the prediction with the target. Provide player feedback including displaying the prediction and the random target numbers (See the Note regarding feedback in example 1.). Note: this method of prediction and target generation breaks the real-time condition of the feedback, but this is much closer to actual lottery prediction.
+<br /><br />
+The preceding instructions for training and practice illustrate all the necessary processing needed to accomplish a real world lottery prediction using the PrdCore API. Either of the two approaches given for a 5 out of 55 drawing can be adapted to any lottery format. For both examples, it is recommended to allow the player to accumulate data by initiating individual trials until he or she feels the prediction is complete. Clearly in such an application, real-time feedback will be of a different form. As suggested in the second example, feedback can be given as to the status (but not the actual numbers) of the sorted prediction number list. This can include showing the sorted list of accumulated, weighted majority votes or majority vote counts. For the second example method, a chi-squared probability can be calculated and displayed for the current distribution of majority vote counts. The form of the majority vote count for each sub-block must first be converted to the number of “1’s” or hits. The number of hits = (MVC + N)/2, where MVC is the majority vote count and N is the total number of samples accumulated in each sub-block. The number of hits in each sub-block, the number of equi-probable sub-blocks and the total number of samples in all sub-blocks are input to a chi-squared calculation equation. The chi-squared output and the degrees of freedom (number of sub-blocks -1) are input to a chi-squared probability calculation to get the probability, p. The probability that the distribution of sub-block counts has occurred by chance is 1.0 – p. The probability of chance occurrence of any particular sub-block count is calculated from the binomial probability calculation, using the number of hits and N as inputs.
+<br /><br />
+The probability of a successful prediction increases with the skill level of the operator, which may be partly innate but is mostly developed by practice. The practice must be focused and constantly oriented toward achieving improved results to achieve the most dramatic improvement. Clarity of intention and visualization of the desired outcome are essential during the prediction process. Probability of success also tends to improve with accumulated time, effort and number of trials that are used in the prediction. Combining the predictions from multiple operators may significantly improve results, but this gain may not appear when multiple operators use the same PRD at the same time.
+<br /><br />
+The guidelines given for practice and prediction of lottery numbers can be adapted to predictions of virtually anything that can be represented by a binary number or one or more normal or uniform numbers. The other essential ingredient is the ability of an operator to clearly visualize either the target of the prediction and his or her mental and emotional state (the experience) of the prediction being correct. 
+<br /><br />
+Object or Person Finder:
+Locating a person or thing is revealing hidden, but currently existing information. As with predicting future information, real-time operator feedback is often not available. In this circumstance, a method must be provided for practice and training of the player. A general training tool is the Psigenics PsiTrainer. However, a specific training tool or game would look and feel more like searching or exploring a mapped region, with hidden information being generated by the PrdCore API. The practice could begin with the simplest and most immediate form of revealing the result of a flipped coin. Revealing the results of a flipped coin is a one-bit binary result. This can be accomplished by a variety of combinations of psi data, target data and processing methods:
+<br /><br />
+When the operator initiates a practice trial with a keypress, mouse click or other input method, acquire a block of psi data containing 175 samples (0.2 seconds at 875Hz) using clairvoyance mode. 
+<br /><br />
+<pre>
+1) Combine the 175 psi samples into one number by adding them all and dividing the sum by the square root of 175. Threshold the resultant number at 0.0 to produce an output of +1 for heads and -1 for tails. Compare the output with the first target bit in the block of samples (the random coin toss). Provide player feedback by showing the revealed output and the random coin toss. 
+2) Divide the 175 psi samples into 5 sub-blocks of 35 samples each. Combine the data in the 5 sub-blocks into 5 numbers by adding and dividing by the square root of 35. Threshold the five resultant numbers and compare each with the first target bit from each of the 5 sub-blocks by multiplying the targets by the corresponding thresholded numbers. Find the majority vote of the 5 hit/miss comparisons by adding the 5 +1/-1 results. The revealed output is heads if the sum is >2, else the output is tails. Provide feedback as indicated in section 1.
+3) Threshold all 175 psi samples. Compare with the corresponding 175 target bits. Find the majority vote of the 175 hit/miss comparisons by adding them all together. The output is heads if the sum is >87 ((number of votes -1)/2 – must always be an odd number for majority voting), else the output is tails. Provide feedback as indicated in section 1.
+4) Convert the 175 psi samples to 175 uniform numbers using the z-to-p function. Produce two sums: for each converted uniform number between 0 and 0.5 increment the sum for “tails;” for each number greater than 0.5, increment the sum for “heads.” The output corresponds to the sum with the largest count. Provide feedback as indicated in section 1. Note: This method does not use targets. Although this process seems trivial for a binary selection with equal probabilities, it may be extended to any number of categories to be revealed with equal or arbitrary probabilities. An example would be selecting from the 26 letters in the alphabet with the same probabilities as they are used in the English language.
+<br /><br />
+Revealing the position of a pea under one of three shells is more interesting and challenging. This may be accomplished in one of the following ways:
+<br /><br />
+1) When the operator initiates a trial with a keypress, mouse click or other input method, acquire a block of psi data containing 175 samples (0.2 seconds at 875Hz) using clairvoyance mode. Combine the 175 psi samples into one number by adding them all and dividing the sum by the square root of 175. Convert the resulting normal number to a uniform number using the z-to-p function. Scale the uniform number by multiplying by 3.0 (the number of equi-probable outcomes). Produce a revealed output by taking the ceiling (rounding up to the next highest integer) of the scaled uniform number. Produce a target by the following steps: assemble the first 2 target bits in the block of 175 into a 2-bit integer with the first bit as the MSB, add one to the integer, test that the sum is <4, if true, the target is the sum, if false, repeat the steps of assembling, adding and testing using the next 2 target bits, if that fails the test, repeat using later target bits until the test is true and a target is produced. Provide operator feedback including displaying the revealed output and the random shell output. There are many alternatives to this target generating method, but this one gives an exact equi-probable distribution. Note: the shell positions and revealed positions are numbered 1 to 3 from left to right or bottom to top (lower left is the origin).
+2) When the operator initiates a trial with a keypress, mouse click or other input method, acquire a block of psi data containing 177 samples (59 times the number of equi-probable outcomes, 0.202 seconds at 875Hz) using clairvoyance mode. Parse the data into 3 sub-blocks of 59 samples each. The data can be parsed by taking 3 blocks of 59 consecutive samples or by taking the first 3 samples and placing them in the first data position of each of the 3 sub-blocks, then moving the second 3 samples into the second position, etc., until all the data is parsed. The second method reduces time skew between the 3 sub-blocks.
+  a) Combine the 59 samples in each of the 3 sub-blocks into 3 normal numbers by adding them (separately in each sub-block) and dividing by the square root of 59. Determine an output by finding the sub-block that resulted in the highest value of the 3 combined normal numbers, with the 3 sub-blocks numbered from 1 to 3 to represent the 3 numbers on the die faces. Or,
+  b) Threshold all the samples in each sub-block, compare each sample to its associated target bit and calculate the majority vote in each sub-block using the processes described above. The majority vote total can range from -59 (all misses) to +59 (all hits) with a mean of 0. The standard deviation for a large number of these majority votes is square root (59) = 7.681 counts. Determine an output by finding the sub-block with the highest majority vote count, with the 3 sub-blocks numbered from 1 to 3 to represent the 3 possible shell positions. The highest count may be the same for two or more sub-blocks because the sub-block totals are integers within a limited range. It is therefore necessary to be able to resolve ties in the output. Two simple ways to resolve a tie require automatically requesting a new block of 177 samples, which are then processed in the same way as the operator-initiated request. The results of the new sample can either be combined with the first set of majority vote totals to produce a combined majority vote from two blocks of samples, or the first set of samples can be discarded and only the second set used. This process of taking new blocks of samples is to be repeated until either the accumulated majority votes or the latest majority vote - depending on the method used - indicate a unique highest count in a sub-block. Or,
+  c) Produce a weighted majority vote for each sub-block. Determine an output by finding the sub-block that resulted in the highest value of the weighted vote, with the 3 sub-blocks numbered from 1 to 3 to represent the 3 possible shell positions. A majority vote can be weighted in a number or ways. The following method uses weights proportional to the log of the individual probabilities. Transform each psi sample to a uniform number by using the z-to-p function. Find the sign (+1 or -1) that will be applied to each weight with the conditional: if uniform number > 0.5, sign is +1, else sign is -1. Produce an x value for each uniform number using the conditional: if uniform number > 0.5, x = 1.0 - uniform number, else x = uniform number. Finally, calculate a y value with the equation: y = log (0.5/x). Each weight is y times its associated sign. The weighted majority vote is the sum of the 59 weights in each sub-block.
+</pre>
+Produce a random shell position (target) as described in section 1 above and compare the output with the target. Provide operator feedback including displaying the output and the random shell position. Note: when multiple calls for blocks of psi samples are required such as in 1b above, use the target produced from the first block of samples.
+<br /><br />
+A better training for finding the location of hidden objects or people is a map search similar to an actual search, but which can be tested immediately through a computer-generated “hidden location” or target. An object is “hidden” (a target generated) when first entering this practice game to be used with the first play, and then automatically at the completion of each play, to be used with the next play. The target is generated as follows: request 32 psi samples in clairvoyance mode. Assemble the first 16 target bits, with the earlier bits being more significant, into a 16-bit integer, and the second 16 bits into a second 16-bit integer. Convert these integers into uniform [0, 1] numbers by dividing by 65,535 (2**16 – 1). These uniform numbers are then used as the X and Y coordinates of the hidden location. This is done by taking the pixel coordinates of the lower left corner of a search map image as the (0, 0) coordinate – the origin – and adding the number of pixels that span the image in the X and Y dimensions times the X and Y uniform numbers respectively. The target location relative to the map image is not to be displayed in any way, but maintained until the current play is completed. When the operator initiates a play with a keypress, mouse click or other input method, acquire a block of psi data containing 200 samples (0.2 seconds at 875Hz) using clairvoyance mode. Parse the 200 samples into 2 sets of 25 sub-blocks with 4 samples in each sub-block. Produce a weighted majority vote for each sub-block as described in example 2c above. Sort the results of the weighted majority votes of the 25 sub-blocks labeled 1 to 25 from low to high for each of the 2 sets of sub-blocks. Produce a set of 25 X-Y coordinate pairs by taking the labels from the two sorted lists; the first number from the first list as the X value and the first number from the second list as the Y value. Continue from beginning to end of both lists until all 25 have been paired. These coordinate pairs represent 25 of 625 possible positions in a 25 by 25 array, sized to just overlay the entire search map area, with the center of the lower left rectangle (or square) being designated (1, 1). Attach a weight to each of the coordinate pairs equal to the square root of its position in the sorted list, that is, the first position associated with the lowest weighted majority vote in each list would have a weight of 1; while the last or highest pair would have a weight of square root (25) = 5. Associate these 25 weights to the corresponding 25 X-Y (psi-indicated) positions in the 25 by 25 array.  Provide operator feedback. Note: a more complex system for producing feedback is required, given the large number of possible degrees of success. A more responsive feedback might use a score based on the weighted distances from the 25 psi-indicated positions to the hidden target location. For each target location, there is an empirically or algorithmically calculated threshold indicating the current 25 psi-indicted positions are closer (a hit) or further (a miss) than the average of all possible sets of psi-indicated locations. Without revealing the hidden target location, a hit/miss feedback can be provided to the operator. This can be helpful when using multiple operator-initiated trials for a single search. In that case, the weighted psi-located positions will accumulate until the player decides the search is complete, and clicks a separate “reveal location” button. The best method of calculating and providing feedback must be determined experimentally.
+<br /><br />
+
+<a name="devsuggestions"></a>
+<div class="groove">Developement Suggestions</div>
+These application descriptions are intended to provide the applications engineer/programmer enough information to immediately demonstrate some of the capabilities of the Psigenics PrdCore API in a training, playing or real-world application. There are almost unlimited variations within the guidelines indicated, and there is enough flexibility in the API to allow for considerable experimentation, research and development.
+<br /><br />
+<b>Some suggested additional areas for development include:</b>
+<pre>
+Games that actually use the “Force” to alter outcomes in your favor.
+Meditation practice games that provide feedback of the direct effect of mental influence.
+Games that allow (or require) some or all of the play to be influenced by mind.
+Guessing games, like Battleship, which allow each player to get secret information by mind power.
+Games that allow the hands-off influence of both light, color and sound.
+Hands-off control of electronic, mechanical devices.
+	Mental “light” switch
+	Remote control of devices
+	Direct mental control of nerve-damaged muscles
+Transmission and reception of mentally intended information (enhanced telepathy).
+Intentional reception of secret information.
+	Personal information
+	Passwords and keys
+	Personal health information
+Reception of information from unknown or unforeseen sources.
+Revealing hidden information form almost any source.
+	Lotteries
+	Games of chance
+	Hidden treasure
+	Hidden or lost people
+	Lost or hidden objects
+Lie detection.
+Detection of emotional responses or expectations of groups.
+Retrieving information from one’s subconscious.
+Receiving spiritual information.
+Receiving future information.
+	Stock market, commodities or futures
+	Warning systems for accident or attack
+	Personal or relationship
+	Weather or other natural disasters
+Electronic Voice Phenomena (EVP)
+</pre>
+<a name="prdcoreapi"></a> 
+
+<div class="groove">
+PrdCore API v0.1</div>
+
+<div class="text">
+The Psigenics PrdCore API is packaged in a Windows shared library
+(PrdCore.dll) to enable convenient use in custom applications. PrdCore can
+use a variety of entropy sources including various Psigenics hardware, the
+ComScire<sup>®</sup> J1000KU or an inbuilt PCQNG. The entropy source is
+influenceable by mind. PrdCore then applies Psigenics psi pattern enhancing
+algorithms to a selected entropy source and provides responsive psi data in a
+general form to be used by your own applications. This document describes the
+PrdCore API and offers simple examples to illustrate the use of the entire
+API in C, C#, and Python. <br />
+The PrdCore.dll can be accessed by any environment that can handle custom
+DLLs. Please check the documentation accompanying the programming language or
+environment of your choice for details on how to use DLLs. The PrdCore API is
+a set of interfaces around a Psycho-Responsive Device (PRD). To use a PRD,
+the device must first be opened using the Open call. Data is received using
+the GetPsiData call. Finally, the device is closed using the Close call to
+free up its resources. More than one PRD device can be accessed
+simultaneously using the handles returned by Open. <br />
+<br />
+A PRD's current entropy source is discovered by calling GetSource and set by
+calling SetSource. By default the PCQNG source is selected unless an external
+hardware source (Psigenics PRD or ComScire<sup>®</sup> J1000KU) is connected
+and is available for use. ListSources will return all available sources that
+can be selected. The PCQNG source is always available and multiple instances
+can be opened by one or more programs. External hardware sources can be used
+by only one application as a single instance on a single machine at a time.
+<br /><br />
+A PRD provides several data rate modes, the current mode is discovered using
+GetPrdMode and set using SetPrdMode. Data rates range from 875 outputs per
+second to multiple thousands depending on the entropy source used. PRD data
+is created in pairs. Psi data contains the intention-influenced data and
+target data contains the targets to be compared with the psi data.
+<br /><br />
+Several psi modes are available to set the type of target data to be used.
+The psi mode is discovered by GetPsiMode and set using SetPsiMode. Psi modes
+are only available when the PRD is set to PRD mode 1, otherwise a targetless
+psi mode is set.
+<br /><br />
+Note that the examples are constructed to provide minimal fully functional programs 
+to demonstrate the usage of the respective API functions. The example code does not 
+follow generally accepted best coding practices for didactic purposes. Most notably, 
+the example code does not implement exception/error handling. 
+</div>
+<a name="open"></a> 
+
+<div class="groove">
+Open </div>
+
+<div class="text">
+Open a PRD device. 
+
+<div class="definition">
+int <strong>Open</strong>(char* <em>licenseId</em>)</div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>licenseId</em></td>
+      <td>     License ID provided by Psigenics Corporation.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+Open returns a handle to an opened PRD device. A return value of -1 indicates
+an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+License IDs are unique to a development license and must be obtained through
+Psigenics. Contact Psigenics if you do not have a License ID. <br />
+<br />
+Open will auto select an entropy source. If an external hardware source, such
+as the Psigenics PRD or ComScire<sup>®</sup> J1000KU, is connected and
+available for use, a hardware source will be auto selected. If no external
+hardware source is connected or available, the PCQNG source will be auto
+selected. Multiple PRD devices may be opened simultaneously. Each call to
+Open will return a unique handle associated with a particular PRD device.
+This handle must be used in all subsequent calls to the PRD device. <br />
+<br />
+A specific external hardware entropy source can only be opened by a single
+program on a single computer at a time. Multiple external hardware entropy
+sources may be connected simultaneously and opened simultaneously. If no
+external hardware entropy sources are available, the PCQNG entropy source
+will be used. Note that multiple PCQNG instances can be opened simultaneously
+on a single computer. However, the PCQNG is a single entropy source shared
+among all open instances, and unexpected psi results may occur when more than
+one PCQNG source is opened on a single computer at a time. <br />
+<br />
+Call ListSources to see which entropy sources are available. ListSources can
+be called before calling Open. To see which entropy source is currently
+selected, call GetSource. Call SetSource to switch to a different source.
+</div>
+</div>
+<br />
+
+<strong>C/C++ Open Example</strong> 
+<div class="csource">
+<pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license ID and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FpPrdOpen)(char* licenseId);
+typedef int (*FpPrdClose)(int prdHandle);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FpPrdOpen PrdOpen = (FpPrdOpen)GetProcAddress(prdCore, "Open");
+    FpPrdClose PrdClose = (FpPrdClose)GetProcAddress(prdCore, "Close");
+
+    // Open 2 PRD instances and remember handles
+    int prdHandle1 = PrdOpen(LICENSE_ID_);
+    int prdHandle2 = PrdOpen(LICENSE_ID_);
+
+    // Show PRD handles
+    printf("Opened first PRD with handle %i\n", prdHandle1);
+    printf("Opened second PRD with handle %i\n", prdHandle2);
+
+    // Close PRD instances
+    PrdClose(prdHandle1);
+    PrdClose(prdHandle2);
+
+    return 0;
+}</pre>
+</div>
+<br />
+<strong>C# Open Example</strong> 
+
+<div class="sharpsource">
+<pre>using System;
+using System.Runtime.InteropServices;
+
+static class OpenExample
+{
+    // Supply your developer license ID and the PrdCore DLL path
+    const string licenseId = "license:abc:abcdefghi";
+    const string prdCorePath = "PrdCore.dll";
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+
+    static void Main()
+    {
+        // Open 2 PRD instances and remember their handles
+        int prd1 = Open(licenseId);
+        int prd2 = Open(licenseId);
+
+        // Show PRD handles
+        Console.WriteLine("Opened first PRD with handle " + prd1);
+        Console.WriteLine("Opened second PRD with handle " + prd2);
+
+        // Close PRD instances
+        Close(prd1);
+        Close(prd2);
+    }
+}</pre>
+</div>
+<br />
+<strong>Python Open Example</strong> 
+
+<div class="pysource">
+<pre>
+# Supply your developer license ID and the PrdCore DLL path
+licenseId = 'license:abc:abcdefghi'
+prdCorePath = 'PrdCore.dll'
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open 2 PRD instances and remember their handles
+prd1 = prdCore.Open(licenseId)
+prd2 = prdCore.Open(licenseId)
+
+# Show PRD handles
+print 'Opened first prd with handle ' + prd1
+print 'Opened second prd with handle ' + prd2
+
+# Close PRD instances
+prdCore.Close(prd1)
+prdCore.Close(prd2)</pre>
+</div>
+<a name="close"></a> 
+
+<div class="groove">
+Close </div>
+Close an opened PRD device. <br />
+
+
+<div class="definition">
+int <strong>Close</strong>(int <em>prdHandle</em>) </div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+Close returns 0 on success. A return value of -1 indicates an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+Close will free software and hardware resources used by a PRD instance. An
+external hardware entropy source freed with Close will be immediately
+available for reuse. </div>
+<br />
+<strong>C/C++ Close Example</strong> 
+
+<div class="csource">
+<pre>#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FpPrdOpen)(char* licenseId);
+typedef int (*FpPrdClose)(int prdHandle);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FpPrdOpen PrdOpen = (FpPrdOpen)GetProcAddress(prdCore, "Open");
+    FpPrdClose PrdClose = (FpPrdClose)GetProcAddress(prdCore, "Close");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    // Show PRD handle
+    printf("Closed PRD with handle %i\n", prdHandle);
+
+    return 0;
+}</pre>
+</div>
+<br />
+<strong>C# Close Example</strong> 
+
+<div class="sharpsource">
+<pre>using System;
+using System.Runtime.InteropServices;
+
+static class CloseExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";  // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Close PRD instances
+        Close(prd);
+
+        // Show PRD handle
+        Console.WriteLine("Closed PRD with handle " + prd);
+    }
+}</pre>
+</div>
+<br />
+<strong>Python Close Example</strong> 
+
+<div class="pysource">
+<pre># License and DLL path information
+licenseId = 'license-abcdefgh'  #Replace this with your PrdCore License ID
+prdCorePath = '/PrdCore.dll'  #Replace this with the path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Close PRD instance
+prdCore.Close(prd)
+
+# Show PRD handle
+print 'Closed prd with handle ' + prd</pre>
+</div>
+<br />
+<a name="getprddata"></a> 
+
+<div class="groove">
+GetPrdData </div>
+Generates psi and target data. 
+
+<div class="definition">
+int <strong>GetPrdData</strong>(int <em>prdHandle</em>, int <em>count</em>,
+double* <em>psiData</em>, double* <em>targetData</em>) </div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+    <tr>
+      <td><em>count</em></td>
+      <td>     Requested number of PRD data samples.</td>
+    </tr>
+    <tr>
+      <td><em>psiData</em></td>
+      <td>     Pre-allocated array of doubles to be filled with psi data.</td>
+    </tr>
+    <tr>
+      <td><em>targetData</em></td>
+      <td>     Pre-allocated array of doubles to be filled with target
+      data.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+GetPrdData returns the requested number of prd data samples on success. A
+return value of -1 indicates an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+In normal operation <em></em><em>psiData and targetData</em> will contain
+exactly <em>count</em> amount of samples each. Each psi data sample is in the
+form of a normally distributed number with mean 0 and standard deviation 1.0.
+Target data is in the form of 1's and -1's, which is essentially a binary
+high and low. 
+
+<p>There are various ways of using these data arrays. Possibilities include,
+but are not limited to, comparing each psi data sample to each target data
+sample; ignoring target data and just considering psi data; combining psi
+data into a single output and comparing with a single combined output of the
+target data. The objective is to achieve psi effect. Thinking about the
+desired type of effect might compel a preference of certain methods of using
+psi data and target data for a particular application. </p>
+
+<p>It is important to understand psi modes when applying target data. The
+entries for GetPsiMode and SetPsiMode have more information on psi modes.</p>
+
+<p>The data rate is important for certain applications. The data rate is
+determined by the entropy source and the prd mode. The entries for GetPrdMode
+and SetPrdMode have more information on prd modes and data rates.</p>
+
+<p>When consuming data continuously at a high rate it is advisable to use
+larger arrays for psi data and target data resulting in fewer calls to
+GetPrdData rather than calling GetPrdData often with small arrays. To achieve
+the best possible data rate, an array size/<em>count</em> equal to a multiple
+of seven is recommended, since target data samples are internally generated
+in multiples of seven. For example, calling GetPrdData(prdHandle, 1, psiData,
+targetData) 350 times is far less efficient than calling
+GetPrdData(prdHandle, 350, psiData, targetData) once.</p>
+
+<p>Memory for <em>psiData</em> and <em>targetData</em> is managed by the
+caller and must be pre-allocated before calling GetPrdData. It is thus also
+the callers responsibility to deallocate <em>psiData</em> and
+<em>targetData</em> memory either manually or by deferring to automatic
+garbage collection when available.</p>
+</div>
+
+<strong>C/C++ GetPrdData Example</strong> 
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnPrdGetData)(int prdHandle, int sampleCount, double* psiData, double* targetData)
+
+int main()
+{
+    int i; // iterator
+
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnPrdGetData PrdGetData = (FnPrdGetData)GetProcAddress(prdCore, "GetData");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Pre-allocate receiving data arrays
+    double psiData[10];
+    double targetData[10];
+
+    // Read and show data
+    // Default PRD mode is 1 and default psi mode is 1
+    PrdGetData(prdHandle, sizeof(psiData), psiData, targetData);
+    for (i=0; i&lt;sizeof(psiData); ++i)
+        printf("%f   %f\n", psiData[i], targetData[i]);
+
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre>
+</div>
+
+<strong>C# GetPrdData Example</strong> 
+<div class="sharpsource">
+<pre>using System;
+using System.Runtime.InteropServices;
+
+static class GetPrdDataExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";  // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int GetPrdData(int prdHandle, int sampleCount, double[] psiData, double[] targetData);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Pre-allocate data arrays to receive data
+        double[] psiData = new double[10];
+        double[] targetData = new double[10];
+
+        // Read PRD data and show
+        // Default PRD mode is 1 and default psi mode is 1
+        GetPrdData(prd, 10, psiData, targetData);
+        for (int i=0; i&lt;psiData.Length; ++i)
+            Console.WriteLine(psiData[i] + "     " + (int)targetData[i]);
+
+        // Close PRD instances
+        Close(prd);
+    }
+}</pre>
+</div>
+<br />
+<strong>Python GetPrdData Example</strong> 
+
+<div class="pysource">
+<pre># License and DLL path information
+licenseId = 'license-abcdefgh'  #Replace this with your PrdCore License ID
+prdCorePath = '/PrdCore.dll'  #Replace this with the path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Prepare data arrays to receive data
+psiData = (c_double * 10)()
+targetData = (c_double * 10)()
+
+# Read PRD data and list
+# Default PRD mode is 1 and default psi mode is 1
+prdCore.GetPrdData(prd, 10, psiData, tergetData)
+print(PsiData  TargetData 
+for i in range(psiData._length_):
+	print '%+0.3f       %+1.0f' % (psiData[i], targetData[i])
+
+# Close PRD instance
+prdCore.Close(prd)</pre>
+</div>
+<br />
+<a name="listsources"></a> 
+
+<div class="groove">
+ListSources </div>
+List all available entropy sources.<br />
+
+
+<div class="definition">
+int <strong>ListSources</strong>(int <em>srcsBuffLen</em>, char*
+<em>sources</em>) </div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>srcsBuffLen</em></td>
+      <td>     Length of the sources buffer in bytes.</td>
+    </tr>
+    <tr>
+      <td><em>sources</em></td>
+      <td>     Pre-allocated buffer to receive a double null-terminated array
+        of null-separated source names.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+ListSources returns the number of available sources on success. A return
+value of -1 indicates an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+ListSources will fill the sources buffer with a null-separated string array
+of entropy source names, including the source currently used by the PRD
+instance. A double null-termination indicates the end of the sources array. 
+
+<p>Memory for <em>sources</em> is managed by the caller and must be
+pre-allocated before calling GetPrdData. It is thus also the callers
+responsibility to deallocate <em>sources</em> memory either manually or by
+deferring to automatic garbage collection when available. If insufficient
+space is allocated for sources, ListSources will return a -1 error code. Ten
+times the number of possible entropy sources in bytes should be pre-allocated
+for sources. For example, if there are three sources, then 10 * 3 = 30 bytes
+should be pre-allocated. The PCQNG source is always available and listed.</p>
+</div>
+
+<strong>C/C++ ListSources Example</strong>
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+#inlcude &lt;string.h&gt;
+
+// Supply DLL path
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdListSources)(int srcsBuffLen, char* sources);
+
+int main()
+{
+    int i; // iterator
+
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdListSources PrdListSources = (FnPrdListSources)GetProcAddress(prdCore, "ListSources");
+
+    // Pre-allocate sources buffer to receive string array
+    int sourceNameLen = 10;
+    int maxSourceCount = 20;
+    char* sources = (char*)malloc(maxSourceCount * sourceNameLen);
+
+    // Read and list all available sources
+    int sourceCount = PrdListSources(sizeof(sources), sources);
+    char* nextSource = 0;
+    char* source = strtok_s(sources, "\0", &nextSource);
+    for (i=0; i&lt;sourceCount; ++i)
+    {
+        printf("%s\n", source);
+        source = strtok_s(0, "\0", &nextSource);
+    }
+
+    return 0;
+}
+</pre>
+</div>
+<br />
+
+<strong>C# ListSources Example</strong> 
+<div class="sharpsource">
+<pre>
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
+
+static class ListSourcesExample
+{
+    // DLL path
+    const string prdCorePath = "PrdCore.dll";  // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int ListSources(int sourcesBuffLen, StringBuilder sources);
+
+    static void Main()
+    {
+        // Pre-allocate sources buffer to receive string array
+        int sourceNameLen = 10;    // 10 bytes per source requirement
+        int maxSourcesCount = 20;  // Arbitrary decision to have max 20 sources
+        StringBuilder sources = new StringBuilder(maxSourcesCount * sourceNameLen);
+
+        // Read and list all available entropy sources
+        int sourceCount = ListSources(sources.Length, sources);
+        string[] splitSources = sources.ToString().Split('\0', sourceCount);
+        foreach (string source in splitSources)
+            Console.WriteLine(source);
+    }
+}
+</pre>
+</div>
+<br />
+
+<strong>Python ListSources Example</strong> 
+<div class="pysource">
+<pre># DLL path information
+prdCorePath = '/PrdCore.dll'  # Replace this with full path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Prepare sources string array buffer
+sourceNameLen = 10  # 10 bytes per source is a minimum requirement 
+maxSourcesCount = 20  # Arbitrary decision to have max 20 sources listed
+sources = create_string_buffer(maxSourcesCount * sourceNameLen)
+
+# Read and list all available entropy sources
+sourceCount = prdCore.ListSources(sources._length_, sources)
+print sources.raw.strip('\0').split('\0')</pre>
+</div>
+<br />
+<a name="getsource"></a> 
+
+<div class="groove">
+GetSource </div>
+Get the current entropy source of a PRD instance.<br />
+
+
+<div class="definition">
+int <strong>GetSource</strong>(int <em>prdHandle</em>, int
+<em>srcBuffLen</em>, char* <em>source</em>) </div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+    <tr>
+      <td><em>srcBuffLen</em></td>
+      <td>     Length of the source buffer in bytes.</td>
+    </tr>
+    <tr>
+      <td><em>source</em></td>
+      <td>     Pre-allocated buffer to receive a null-terminated source name
+        string.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+GetSource returns 0 on success. A return value of -1 indicates an error.
+</div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+GetSource will fill the source buffer with a null-terminated string with the
+currently used entropy source. 
+
+<p>Memory for <em>source</em> is managed by the caller and must be
+pre-allocated before calling GetPrdData. It is thus also the callers
+responsibility to deallocate <em>source</em> memory either manually or by
+deferring to automatic garbage collection when available. If insufficient
+space is allocated for source, GetSource will return a -1 error code.
+Pre-allocate <em>source</em> with 10 bytes to receive the source name.</p>
+</div>
+<br />
+
+<strong>C/C++ GetSource Example:</strong> 
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnPrdGetSource)(int prdHandle, int srcBuffLen, char* source);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnPrdGetSource PrdGetSource = (FnPrdGetSource)GetProcAddress(prdCore, "GetSource");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Pre-allocate source name buffer
+    char source[10]; // 10 byte requirement
+
+    // Get and show entropy source
+    PrdGetSource(prdHandle, sizeof(source), source);
+    printf("%s\n", source);
+
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre>
+</div>
+<br />
+
+<strong>C# GetSource Example</strong> 
+<div class="sharpsource">
+<pre>using System;
+using System.Text;
+using System.Runtime.InteropServices;
+
+static class GetSourceExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";     // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetSource(int prdHandle, int srcBuffLen, StringBuilder source);
+
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Pre-allocate source name buffer
+        StringBuilder source = new StringBuilder(10);  // 10 byte requirement
+
+        // Get and show entropy source
+        GetSource(prdHandle, source.Length, source);
+        Console.WriteLine(source.ToString());
+
+        // Close PRD instance
+        Close(prd);
+    }
+}</pre>
+</div>
+<br />
+<strong>Python GetSource Example</strong> 
+
+<div class="pysource">
+<pre># License information and DLL path
+licenseId = 'license-abcdefgh'  # Replace this with your PrdCore License ID
+prdCorePath = '/PrdCore.dll'  # Replace this with the path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Prepare source string buffer to receive source name
+sourceNameLen = 10  # 10 bytes for a source name is a min requirement
+source = create_string_buffer(sourceNameLen)
+
+# Get and show entropy source used
+prdCore.GetSource(prd, source._length_, source)
+print source
+
+# Close PRD instance
+prdCore.Close(prd)</pre>
+</div>
+<br />
+<a name="setsource"></a> 
+
+<div class="groove">
+SetSource </div>
+Change the current entropy source of a PRD instance.<br />
+
+
+<div class="definition">
+int <strong>SetSource</strong>(int <em>prdHandle</em>, char* <em>source</em>)
+</div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+    <tr>
+      <td><em>source</em></td>
+      <td>     Null-terminated string naming the desired new entropy
+      source.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+SetSource returns 0 on success. A return value of -1 indicates an error.
+</div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+SetSource changes the entropy source. A list of available entropy sources is
+obtained by calling ListSources. If a source name is invalid or unavailable
+SetSource will return -1.</div>
+<br />
+
+<strong>C/C++ SetSource Example</strong> 
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnPrdGetSource)(int prdHandle, int srcBuffLen, char* source);
+typedef int (*FnPrdSetSource)(int prdHandle, char* source);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnPrdGetSource PrdGetSource = (FnPrdGetSource)GetProcAddress(prdCore, "GetSource");
+    FnPrdSetSource PrdSetSource = (FnPrdSetSource)GetProcAddress(prdCore, "SetSource");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Pre-allocate buffer to hold source name for GetSource
+    char source[10]; // 10 byte requirement
+
+    // Change entropy source to PCQNG
+    PrdSetSource(prdHandle, "PCQNG");
+
+    // Check entropy source
+    PrdGetSource(prdHandle, sizeof(source), source);
+    printf("PRD entropy source set to %s\n", source);
+
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre>
+</div>
+<br />
+
+<strong>C# SetSource Example</strong> 
+<div class="sharpsource">
+<pre>using System;
+using System.Text;
+using System.Runtime.InteropServices;
+
+static class SetSourceExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";     // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetSource(int prdHandle, int srcBuffLen, StringBuilder source);
+    [DllImport(prdCorePath)]
+    static extern int SetSource(int prdHandle, string source);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Change entropy source to PCQNG
+        SetSource(prd, "PCQNG");
+
+        // Check entropy source
+        StringBuilder source = new StringBuilder(10);  // 10 byte requirement
+        GetSource(prdHandle, source.Length, source);
+        Console.WriteLine("PRD entropy source set to " + source.ToString());
+
+        // Close PRD instance
+        Close(prd);
+    }
+}
+</pre>
+</div>
+<br />
+
+<strong>Python SetSource Example</strong> 
+<div class="pysource">
+<pre>
+# License information and DLL path
+licenseId = 'license-abcdefgh'  # Replace this with your PrdCore License ID
+prdCorePath = '/PrdCore.dll'  # Replace this with the path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Change entropy source to PCQNG
+prdCore.SetSource('PCQNG')
+
+# Check entropy source
+source = create_string_buffer(10)
+prdCore.GetSource(prd, source._length_, source)
+print 'PRD entropy source set to ' + source.value
+
+# Close PRD instance
+prdCore.Close(prd)</pre>
+</div>
+<br />
+
+<a name="getprdmode"></a> 
+<div class="groove">
+GetPrdMode </div>
+Get the current PRD mode.<br />
+
+
+<div class="definition">
+int <strong>GetPrdMode</strong>(int <em>prdHandle</em>) </div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+GetPrdMode returns the current PRD mode on success. A return value of -1
+indicates an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+There are three valid PRD modes which influence data rates and the
+availability of psi modes. Specific psi modes are only available with PRD
+mode 1. PRD modes 2 and 3 will only allow a targetless psi mode. See
+GetPsiMode and SetPsiMode for more details on psi modes. 
+
+<p>Data rates will vary depending on the entropy source used. The PCQNG
+source will produce 875 psi and target data samples per second in PRD mode 1.
+The PCQNG source in PRD modes 2 and 3 will output 1000 and 4000 data samples
+per second, respectively. Table 1 below lists the expected PRD data rates for
+common external hardware entropy sources for each PRD mode.</p>
+
+<table
+style="width: 40em; border-width: 1px; border-style: none; border-spacing: 3px; border-width: 1px; padding: 0;">
+  <tfoot>
+    <tr>
+      <td colspan="4" align="center">Table 1</td>
+    </tr>
+  </tfoot>
+  <tbody style="text-align: center; background: #eee;">
+    <tr style="font-weight: bold;">
+      <td style="padding: 0.2em;">Entropy Source</td>
+      <td style="padding: 0.2em;">PRD Rate<br />
+        Mode 1<sup>(Note 2)</sup></td>
+      <td style="padding: 0.2em;">PRD Rate<br />
+        Mode 2<sup>(Note 3)</sup></td>
+      <td style="padding: 0.2em;">PRD Rate<br />
+        Mode 3<sup>(Note 4)</sup></td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">ComScire<sup>®</sup> J1000KU<sup>(Note
+        1)</sup></td>
+      <td style="padding: 0.2em;">919 </td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">7353</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 250Kbps raw</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">2101</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 500Kbps raw</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">4202</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 1Mbps raw</td>
+      <td style="padding: 0.2em;">933</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">8403</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 2Mbps raw</td>
+      <td style="padding: 0.2em;">884</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">16807</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.7em; margin: 0em 1em;">Note 1: The raw bit rate for
+the ComScire<sup>®</sup> J1000KU is 875,000bps when used as a PRD entropy
+source.<br />
+Note 2: PRD output rate equation given the raw source rate in PRD mode 1:
+<strong>875 * (rawbps/104125) / Floor(rawbps/104125)<br />
+</strong>Note 3: PRD output equation PRD mode 2: <strong>1000 *
+(rawbps/119000) / Floor(rawbps/119000)<br />
+</strong>Note 4: PRD output equation PRD mode 3: <strong>rawbps / 119
+</strong></p>
+</div>
+<br />
+
+<strong>C/C++ GetPrdMode Example</strong> 
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnGetPrdMode)(int prdHandle);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnGetPrdMode GetPrdMode = (FnGetPrdMode)GetProcAddress(prdCore, "GetPrdMode");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Get and show current PRD mode
+    int prdMode = GetPrdMode(prdHandle);
+    printf("Current PRD mode is %i\n", prdMode);
+
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre>
+</div>
+<br />
+
+<strong>C# GetPrdMode Example</strong> 
+<div class="sharpsource">
+<pre>using System;
+using System.Runtime.InteropServices;
+
+static class GetPrdModeExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";     // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetPrdMode(int prdHandle);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Get and show current PRD mode
+        int prdMode = GetPrdMode(prd);
+        Console.WriteLine("Current PRD mode is " + prdMode);
+
+        // Close PRD instance
+        Close(prd);
+    }
+}</pre>
+</div>
+<br />
+<strong>Python GetPrdMode Example</strong> 
+
+<div class="pysource">
+<pre># License information and DLL path
+licenseId = 'license-abcdefgh'  # Replace this with your PrdCore License ID
+prdCorePath = '/PrdCore.dll'  # Replace this with the path to PrdCore.dll
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Get and show current PRD mode
+prdMode = prdCore.GetPrdMode(prd)
+print 'Current PRD mode is ' + prdMode
+
+# Close PRD instance
+prdCore.Close(prd)</pre>
+</div>
+<br />
+<a name="setprdmode"></a> 
+
+<div class="groove">
+SetPrdMode </div>
+Changes the current PRD mode.<br />
+
+
+<div class="definition">
+int <strong>SetPrdMode</strong>(int <em>prdHandle</em>, int <em>prdMode</em>)
+</div>
+<br />
+<strong>Parameters</strong> 
+
+<div class="detail">
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+    <tr>
+      <td><em>prdMode</em></td>
+      <td>     The newly requested PRD mode (1, 2, or 3).</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<strong>Return Value</strong> 
+
+<div class="detail">
+SetPrdMode returns the current PRD mode on success. A return value of -1
+indicates an error. </div>
+<br />
+<strong>Remarks</strong> 
+
+<div class="detail">
+There are three valid PRD modes which influence data rates and the
+availability of psi modes. Specific psi modes are only available with PRD
+mode 1. PRD modes 2 and 3 will only allow a targetless psi mode. See
+GetPsiMode and SetPsiMode for more details on psi modes. 
+
+<p>SetPrdMode will reset the psi mode to psi mode 1, if PRD mode 1 is
+requested. Otherwise, SetPrdMode will set the psi mode to targetless.</p>
+
+<p>Data rates will vary depending on the entropy source used. The 'PCQNG'
+source will produce 875 psi and target data points per second in PRD mode 1.
+For PRD modes 2 and 3 the 'PCQNG' will output 1000 and 4000 data points per
+second, respectively. The table below lists the expected PRD data rates for
+common external hardware entropy sources for each PRD mode.</p>
+
+<table style="width: 40em;">
+  <tbody style="text-align: center; background: #eee;">
+    <tr style="font-weight: bold;">
+      <td style="padding: 0.2em;">Entropy Source</td>
+      <td style="padding: 0.2em;">PRD Rate<sup>2)</sup><br />
+        Mode 1</td>
+      <td style="padding: 0.2em;">PRD Rate<sup>3)</sup><br />
+        Mode 2</td>
+      <td style="padding: 0.2em;">PRD Rate<sup>4)</sup><br />
+        Mode 3</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">ComScire J1000KU<sup>1)</sup></td>
+      <td style="padding: 0.2em;">919 </td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">7353</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 250Kbps raw</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">2101</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 500Kbps raw</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">4202</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 1Mbps raw</td>
+      <td style="padding: 0.2em;">933</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">8403</td>
+    </tr>
+    <tr>
+      <td style="padding: 0.2em;">PRD 2Mbps raw</td>
+      <td style="padding: 0.2em;">884</td>
+      <td style="padding: 0.2em;">1050</td>
+      <td style="padding: 0.2em;">16807</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.7em; margin: 0.1em 1em;">1) The raw bit rate for the
+ComScire J1000KU is 875,000 bps when used as a PRD entropy source.<br />
+2) PRD output rate equation given the raw source rate in PRD mode 1:
+<strong>875 * (rawbps/104125) / Floor(rawbps/104125)<br />
+</strong>3) PRD output equation PRD mode 2: <strong>1000 * (rawbps/119000) /
+Floor(rawbps/119000)<br />
+</strong>4) PRD output equation PRD mode 3: <strong>rawbps / 119 </strong></p>
+</div>
+<br />
+
+<strong>C/C++ SetPrdMode Example</strong> 
+<div class="csource">
+<pre>
+#inlcude &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnSetPrdMode)(int prdHandle, int prdMode);
+typedef int (*FnGetPrdData)(int prdHandle, int sampleCount, double* psiData, double* targetData);
+
+int main()
+{
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnGetPrdData GetPrdData = (FnGetPrdData)GetProcAddress(prdCore, "GetPrdData");
+    FnSetPrdMode SetPrdMode = (FnSetPrdMode)GetProcAddress(prdCore, "SetPrdMode");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Set PRD mode to "high speed" mode 3
+    int prdMode = SetPrdMode(prdHandle, 3);
+
+    // Pre-alllocate data arrays to receive data
+    double psiData[7000];
+    double targetData[7000];
+
+    // Measure and show sample rate
+    clock_t endTime;
+    clock_t startTime = clock();
+    GetPrdData(prdHandle, sizeof(psiData), psiData, targetData);
+    endTime = clock();
+    printf("Measured sample rate in PRD mode %i at %1.0f samples per second\n", prdMode, (double)(endTime-startTime)/CLOCKS_PER_SEC);
+
+    
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre>
+</div>
+<br />
+
+<strong>C# SetPrdMode Example</strong> 
+<div class="sharpsource">
+<pre>using System;
+using System.Runtime.InteropServices;
+
+static class SetPrdModeExample
+{
+    // License information and DLL path
+    const string licenseId = "license-abcdefgh";  // Replace with youe PrdCore License ID
+    const string prdCorePath = "PrdCore.dll";     // Replace with path to PrdCore.dll
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetPrdData(int prdHandle, int sampleCount, double[] psiData, double[] targetData);
+    [DllImport(prdCorePath)]
+    static extern int SetPrdMode(int prdHandle, int prdMode);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Set PRD mode to "high speed" mode 3
+        int prdMode = SetPrdMode(prd, 3);
+
+        // Pre-allocate data arrays to receive data
+        double[] psiData = new double[7000];
+        double[] targetData = new double[7000];
+
+        // Measure and show sample rate
+        DateTime startTime = DateTime.Now;
+        GetPrdData(prd, psiData.Length, psiData, targetData);
+        DateTime endTime = DateTime.Now;
+        TimeSpan timeSpan = endTime - startTime;
+        Console.WriteLine("Measured sample rate in PRD mode " + prdMode + " at " + (psiData.Length/(timeSpan.TotalMinutes)));
+
+        // Close PRD instance
+        Close(prd);
+    }
+}</pre>
+</div>
+<br />
+
+<strong>Python SetPrdMode Example</strong> 
+<div class="pysource"><pre>
+# Supply your developer license id and the PrdCore DLL path
+licenseId = 'license:abcdefghijkl'
+prdCorePath = 'PrdCore.dll'
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Set PRD mode to "high speed" mode 3
+newPrdMode = prdCore.SetPrdMode(prd, 3)
+
+# Prepare data buffers for psi and target data
+psiData = (c_double * 7000)()
+targetData = (c_double * 7000)()
+
+# Measure and show sample rate
+from time import *
+timeStart = time()
+prdCore.GetPsiData(prd, psiData._length_, psiData, targetData)
+timeEnd = time()
+print ['Measured sample rate in PRD mode %i at %1.2f samples per second'
+       % (newPrdMode, psiData._length_/(timeEnd-timeStart))]
+
+# Close PRD instance
+prdCore.Close(prd)
+</pre></div>
+<br />
+
+<a name="getpsimode"></a> 
+<div class="groove">GetPsiMode </div>
+Get the current psi mode.<br />
+
+<div class="definition">
+int <strong>GetPsiMode</strong>(int <em>prdHandle</em>)
+</div>
+<br />
+
+<strong>Parameters</strong> 
+<div class="detail">
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+
+<strong>Return Value</strong> 
+<div class="detail">
+GetPsiMode returns the current psi mode on success. A return value of -1
+indicates an error.
+</div>
+<br />
+
+<strong>Remarks</strong> 
+<div class="detail">
+Psi modes determine target bit generation timing and type. Active psi modes
+range from 1 to 3 representing psychokinesis, clairvoyant, and precognitive
+target generation. Psi mode 0 indicates an inactive, or targetless psi mode
+and behaves essentially like the psychokinesis psi mode. Active psi modes are
+only available in PRD mode 1. See GetPrdMode and SetPrdMode for more details
+on PRD modes. 
+<br /><br />
+Psi mode 1, or psychokinesis mode, always fills all targets with ones on a
+call to GetPrdData. This target generating mode can be used when trying to
+influence psi data to conform to a fixed pattern. This is akin to moving all
+psi data in a pre-defined direction, hence psychokinesis mode.
+<br /><br />
+Psi mode 2, or clairvoyant mode, generates a random target pattern of 1's
+and -1's before a call to GetPrdData is made. The call to GetPrdData then
+generates psi data and provides the pre-generated target data. So the target
+data is essentially in existence, but hidden and only revealed alongside psi
+data after it is generated. This is akin to seeking out existing, but hidden
+information, hence clairvoyant mode.
+<br /><br />
+Psi mode 3, or precognition mode, generates a random target pattern of 1's
+and -1's completely after psi data is generated in a GetPrdData call. The
+target data is non-existent until all psi data is generated for the
+GetPrdData call. This is predicting a future pattern, hence precognition
+mode.
+</div>
+<br /><br />
+
+<strong>C/C++ GetPsiMode Example</strong> 
+<div class="csource"><pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnGetPsiMode)(int prdHandle);
+
+int main()
+{
+    int i = 0;  // iterator
+
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnGetPsiMode GetPsiMode = (FnGetPsiMode)GetProcAddress(prdCore, "GetPsiMode");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Get and show current psi mode
+    char* psiModes[] = { "Psychokinesis", "Clairvoyance", "Precognition" };
+    int psiMode = GetPsiMode(prdHandle);
+    printf("Current psi mode is %i (%s)\n", psiMode, psiModes[psiMode-1]);
+    
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre></div>
+<br />
+
+<strong>C# GetPsiMode Example</strong> 
+<div class="sharpsource"><pre>
+using System;
+using System.Runtime.InteropServices;
+
+static class GetPsiModeExample
+{
+    // Supply your developer license id and the PrdCore DLL path
+    const string licenseId = "license:abcdefghijkl";
+    const string prdCorePath = "PrdCore.dll";
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetPsiMode(int prdHandle);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Get and show current psi mode
+        string[] psiModes = { "Psychokinesis", "Clairvoyance", "Precognition" };
+        int psiMode = GetPsiMode(prd);
+        Console.WriteLine("Current psi mode is " + psiMode + "(" + psiModes[psiMode-1] + ")");
+
+        // Close PRD instance
+        Close(prd);
+    }
+}
+</pre></div>
+<br />
+
+<strong>Python GetPsiMode Example</strong> 
+<div class="pysource"><pre>
+# Supply your developer license id and the PrdCore DLL path
+licenseId = 'license:abcdefghijkl'
+prdCorePath = 'PrdCore.dll'
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Get and show current psi mode
+psiModes = ['Psychokinesis', 'Clairvoyance', 'Precognition']
+psiMode = prdCore.GetPsiMode(prd)
+print 'Current psi mode is %i (%s)' % (psiMode, psiModes[psiMode-1])
+
+# Close PRD instance
+prdCore.Close(prd)
+</pre></div>
+<br />
+
+<a name="setpsimode"></a> 
+<div class="groove">SetPsiMode</div>
+Changes the current psi mode.
+<br />
+
+<div class="definition">
+int <strong>SetPsiMode</strong>(int <em>prdHandle</em>, int <em>psiMode</em>)
+</div>
+<br />
+
+<strong>Parameters</strong> 
+<div class="detail">
+<table border="0">
+  <tbody>
+    <tr>
+      <td><em>prdHandle</em></td>
+      <td>     Handle returned by Open to a PRD instance.</td>
+    </tr>
+    <tr>
+      <td><em>psiMode</em></td>
+      <td>     The newly requested psi mode (1, 2, or 3).</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+
+<strong>Return Value</strong> 
+<div class="detail">
+SetPsiMode returns 0 on success. A return value of -1indicates an error.
+</div>
+<br />
+
+<strong>Remarks</strong> 
+<div class="detail">
+Psi modes determine target bit generation timing and type. Active psi modes
+range from 1 to 3 representing psychokinesis, clairvoyant, and precognitive
+target generation. Psi mode 0 indicates an inactive, or targetless psi mode
+and behaves essentially like the psychokinesis psi mode. Active psi modes are
+only available in PRD mode 1. See GetPrdMode and SetPrdMode for more details
+on PRD modes. 
+<br /><br />
+Psi mode 1, or psychokinesis mode, always fills all targets with ones on a
+call to GetPrdData. This target generating mode can be used when trying to
+influence psi data to conform to a fixed pattern. This is akin to moving all
+psi data in a pre-defined direction, hence psychokinesis mode.
+<br /><br />
+Psi mode 2, or clairvoyant mode, generates a random target pattern of 1's
+and -1's before a call to GetPrdData is made. The call to GetPrdData then
+generates psi data and provides the pre-generated target data. So the target
+data is essentially in existence, but hidden and only revealed alongside psi
+data after it is generated. This is akin to seeking out existing, but hidden
+information, hence clairvoyant mode.
+<br /><br />
+Psi mode 3, or precognition mode, generates a random target pattern of 1's
+and -1's completely after psi data is generated in a GetPrdData call. The
+target data is non-existent until all psi data is generated for the
+GetPrdData call. This is predicting a future pattern, hence precognition
+mode.
+</div>
+<br /><br />
+
+<strong>C/C++ SetPsiMode Example</strong> 
+<div class="csource"><pre>
+#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+
+// Supply your developer license id and the PrdCore DLL path
+#define LICENSE_ID_    "license:abc:abcdefghi"
+#define PRD_CORE_PATH_ "PrdCore.dll"
+
+// Function pointers for PRD manipulation
+typedef int (*FnPrdOpen)(char* licenseId);
+typedef int (*FnPrdClose)(int prdHandle);
+typedef int (*FnGetPrdData)(int prdHandle, int sampleCount, double* psiData, double* targetData);
+typedef int (*FnSetPsiMode)(int prdHandle, int psiMode);
+
+int main()
+{
+    int i = 0;  // iterator
+
+    // Import PrdCore DLL
+    HINSTANCE prdCore = LoadLibraryA(PRD_CORE_PATH_);
+    FnPrdOpen PrdOpen = (FnPrdOpen)GetProcAddress(prdCore, "Open");
+    FnPrdClose PrdClose = (FnPrdClose)GetProcAddress(prdCore, "Close");
+    FnGetPrdData GetPrdData = (FnGetPrdData)GetProcAddress(prdCore, "GetPrdData");
+    FnSetPsiMode SetPsiMode = (FnSetPsiMode)GetProcAddress(prdCore, "SetPsiMode");
+
+    // Open PRD instance and remember handle
+    int prdHandle = PrdOpen(LICENSE_ID_);
+
+    // Set precognition psi mode 3
+    int psiMode = SetPsiMode(prdHandle, 3);
+
+    // Pre-alllocate data arrays to receive data
+    double psiData[10];
+    double targetData[10];
+
+    // Read PRD data in psi mode 3 and list
+    GetPrdData(prdHandle, 10, psiData, targetData);
+    printf("Data from psi mode %i\n", psiMode);
+    for (i=0; i&lt;10; i++)
+        printf("%f    %i\n", psiData[i], (int)targetData[i]);
+    
+    // Close PRD instance
+    PrdClose(prdHandle);
+
+    return 0;
+}
+</pre></div>
+<br />
+
+<strong>C# SetPsiMode Example</strong> 
+<div class="sharpsource"><pre>
+using System;
+using System.Runtime.InteropServices;
+
+static class SetPsiModeExample
+{
+    // Supply your developer license id and the PrdCore DLL path
+    const string licenseId = "license:abcdefghijkl";
+    const string prdCorePath = "PrdCore.dll";
+
+    // Import PrdCore DLL
+    [DllImport(prdCorePath)]
+    static extern int Open(string licenseId);
+    [DllImport(prdCorePath)]
+    static extern int Close(int prdHandle);
+    [DllImport(prdCorePath)]
+    static extern int GetPrdData(int prdHandle, int sampleCount, double[] psiData, double[] targetData);
+    [DllImport(prdCorePath)]
+    static extern int SetPsiMode(int prdHandle, int psiMode);
+
+    static void Main()
+    {
+        // Open PRD instance and remember handle
+        int prd = Open(licenseId);
+
+        // Set precognition psi mode 3
+        int psiMode = SetPsiMode(prd, 3);
+
+        // Pre-allocate data arrays to receive data
+        double[] psiData = new double[10];
+        double[] targetData = new double[10];
+
+        // Read PRD data in psi mode 3 and list
+        GetPrdData(prd, 10, psiData, targetData);
+        Console.WriteLine("Data from psi mode " + psiMode);
+        for (int i=0; i&lt;psiData.Length; ++i)
+            Console.WriteLine(psiData[i] + "    " + (int)targetData[i]);
+
+        // Close PRD instance
+        Close(prd);
+    }
+}
+</pre></div>
+<br />
+
+<strong>Python SetPsiMode Example</strong> 
+<div class="pysource"><pre>
+# Supply your developer license id and the PrdCore DLL path
+licenseId = 'license:abcdefghijkl'
+prdCorePath = 'PrdCore.dll'
+
+# Load PrdCore DLL
+from ctypes import *
+prdCore = cdll.LoadLibrary(prdCorePath)
+
+# Open PRD instances and remember handle
+prd = prdCore.Open(licenseId)
+
+# Set precognition psi mode 3
+psiMode = prdCore.SetPsiMode(prd, 3)
+
+# Prepare data arrays to receive data
+psiData = (c_double * 10)()
+targetData = (c_double * 10)()
+
+# Read PRD data in psi mode 3 and list
+prdCore.GetPrdData(prd, 10, psiData, targetData)
+print 'Data from psi mode %i' % (psiMode)
+for i in range(psiData._length_):
+    print '%+0.3f    %+1.0f' % (psiData[i], targetData[i])
+
+# Close PRD instance
+prdCore.Close(prd)
+</pre></div>
+<br />
+
+
+<div id="fixedbox"><p>
+	<a class="header" href="#prdevices">Introduction</a>
+	<a href="#prdproc">PRD Processing</a>
+ 	<a href="#appexamples">App Examples</a>
+ 	<a href="#devsuggestions">Dev Suggestions</a>
+
+	<a class="header" href="#prdcoreapi">PrdCore API</a>
+	<a href="#open">Open</a>
+	<a href="#close">Close</a>
+	<a href="#getprddata">GetPrdData</a>
+	<a href="#listsources">ListSources</a>
+	<a href="#getsource">GetSource</a>
+	<a href="#setsource">SetSource</a>
+	<a href="#getprdmode">GetPrdMode</a>
+	<a href="#setprdmode">SetPrdMode</a>
+	<a href="#getpsimode">GetPsiMode</a>
+	<a href="#setpsimode">SetPsiMode</a>
+</p></div>
+
+</body>
+</html>
