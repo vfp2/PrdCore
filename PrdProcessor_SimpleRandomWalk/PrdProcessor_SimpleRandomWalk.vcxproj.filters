@@ -24,34 +24,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PrdCore.h">
+    <ClInclude Include="PrdProcessor_SimpleRandomWalk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IPrdProcessor.h">
+    <ClInclude Include="..\PrdCore\IPrdDataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer.h">
+    <ClInclude Include="..\PrdCore\IPrdProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LfsrCorrector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LpFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IPrdSource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PrdSourcePcqng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PrdSourcePrng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PrdSourceFtdi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FtdiPrdDevice.h">
+    <ClInclude Include="SimpleRandomWalkProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,31 +41,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PrdCore.cpp">
+    <ClCompile Include="PrdProcessor_SimpleRandomWalk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LfsrCorrector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LpFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PrdSourcePcqng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PrdSourcePrng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PrdSourceFtdi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FtdiPrdDevice.cpp">
+    <ClCompile Include="SimpleRandomWalkProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

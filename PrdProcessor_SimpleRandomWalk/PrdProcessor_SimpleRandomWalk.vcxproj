@@ -11,15 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{924BEF4A-727A-4264-B347-6FF146D4391E}</ProjectGuid>
+    <ProjectGuid>{44294F93-542F-4788-BCAE-99F8F76B36CB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PrdCore</RootNamespace>
+    <RootNamespace>PrdProcessor_SimpleRandomWalk</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -50,15 +50,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PRDCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PRDPROCESSOR_SIMPLERANDOMWALK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\..\FTDI\FTDI CDM 2.08.24</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../PrdCore</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\..\FTDI\FTDI CDM 2.08.24\i386</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FTD2XX.lib;Winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,39 +66,29 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PRDCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PRDPROCESSOR_SIMPLERANDOMWALK_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\..\FTDI\FTDI CDM 2.08.24</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>../PrdCore</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\..\..\FTDI\FTDI CDM 2.08.24\i386</AdditionalLibraryDirectories>
-      <AdditionalDependencies>FTD2XX.lib;Winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="PrdSourceFtdi.h" />
-    <ClInclude Include="FtdiPrdDevice.h" />
-    <ClInclude Include="IPrdProcessor.h" />
-    <ClInclude Include="IPrdSource.h" />
-    <ClInclude Include="LfsrCorrector.h" />
-    <ClInclude Include="LpFilter.h" />
-    <ClInclude Include="PrdSourcePcqng.h" />
-    <ClInclude Include="PrdCore.h" />
-    <ClInclude Include="PrdSourcePrng.h" />
+    <ClInclude Include="..\PrdCore\IPrdDataManager.h" />
+    <ClInclude Include="..\PrdCore\IPrdProcessor.h" />
+    <ClInclude Include="PrdProcessor_SimpleRandomWalk.h" />
+    <ClInclude Include="SimpleRandomWalkProcessor.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -109,13 +97,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PrdSourceFtdi.cpp" />
-    <ClCompile Include="FtdiPrdDevice.cpp" />
-    <ClCompile Include="LfsrCorrector.cpp" />
-    <ClCompile Include="LpFilter.cpp" />
-    <ClCompile Include="PrdSourcePcqng.cpp" />
-    <ClCompile Include="PrdCore.cpp" />
-    <ClCompile Include="PrdSourcePrng.cpp" />
+    <ClCompile Include="PrdProcessor_SimpleRandomWalk.cpp" />
+    <ClCompile Include="SimpleRandomWalkProcessor.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

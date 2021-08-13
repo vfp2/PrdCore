@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrdCore", "PrdCore\PrdCore.vcxproj", "{924BEF4A-727A-4264-B347-6FF146D4391E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrdProcessor_SimpleRandomWalk", "PrdProcessor_SimpleRandomWalk\PrdProcessor_SimpleRandomWalk.vcxproj", "{44294F93-542F-4788-BCAE-99F8F76B36CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{924BEF4A-727A-4264-B347-6FF146D4391E} = {924BEF4A-727A-4264-B347-6FF146D4391E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPrdCore", "TestPrdCore\TestPrdCore.vcxproj", "{270D40A3-1968-456A-B8C8-AF26248E9F02}"
+	ProjectSection(ProjectDependencies) = postProject
+		{924BEF4A-727A-4264-B347-6FF146D4391E} = {924BEF4A-727A-4264-B347-6FF146D4391E}
+		{44294F93-542F-4788-BCAE-99F8F76B36CB} = {44294F93-542F-4788-BCAE-99F8F76B36CB}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{924BEF4A-727A-4264-B347-6FF146D4391E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{924BEF4A-727A-4264-B347-6FF146D4391E}.Debug|Win32.Build.0 = Debug|Win32
+		{924BEF4A-727A-4264-B347-6FF146D4391E}.Release|Win32.ActiveCfg = Release|Win32
+		{924BEF4A-727A-4264-B347-6FF146D4391E}.Release|Win32.Build.0 = Release|Win32
+		{44294F93-542F-4788-BCAE-99F8F76B36CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44294F93-542F-4788-BCAE-99F8F76B36CB}.Debug|Win32.Build.0 = Debug|Win32
+		{44294F93-542F-4788-BCAE-99F8F76B36CB}.Release|Win32.ActiveCfg = Release|Win32
+		{44294F93-542F-4788-BCAE-99F8F76B36CB}.Release|Win32.Build.0 = Release|Win32
+		{270D40A3-1968-456A-B8C8-AF26248E9F02}.Debug|Win32.ActiveCfg = Debug|Win32
+		{270D40A3-1968-456A-B8C8-AF26248E9F02}.Debug|Win32.Build.0 = Debug|Win32
+		{270D40A3-1968-456A-B8C8-AF26248E9F02}.Release|Win32.ActiveCfg = Release|Win32
+		{270D40A3-1968-456A-B8C8-AF26248E9F02}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
