@@ -110,12 +110,15 @@ unsigned __stdcall PcqngRng::Runner(void* self)
         if (waitResponse == WAIT_OBJECT_0)
         {
             // TSC Measurement
+            // FIXME: __asm and rdtsc don't work on x64
+            #if _M_IX86
             __asm
             {
                 rdtsc
                 mov dword ptr[tscWord], eax
                 mov dword ptr[tscWord]+4, edx
             }
+            #endif
 
             // TSC difference
             tscDiff = (tscWord-prevTscWord);
