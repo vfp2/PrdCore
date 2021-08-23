@@ -178,11 +178,6 @@
     <ClCompile Include="PrngRng.cpp" />
     <ClCompile Include="SimpleWalkPrd.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QWQNG\QWQNG\QWQNG.vcxproj">
-      <Project>{c623e3f5-b73f-4e55-91a2-81b06734b662}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

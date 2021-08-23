@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrdCore", "PrdCore\PrdCore.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrdCoreTest", "PrdCoreTest\PrdCoreTest.vcxproj", "{2A14D06F-120D-4BA1-92CE-E66C005A6A87}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QWQNG", "QWQNG\QWQNG\QWQNG.vcxproj", "{C623E3F5-B73F-4E55-91A2-81B06734B662}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,20 +31,12 @@ Global
 		{2A14D06F-120D-4BA1-92CE-E66C005A6A87}.Release|Win32.Build.0 = Release|Win32
 		{2A14D06F-120D-4BA1-92CE-E66C005A6A87}.Release|x64.ActiveCfg = Release|x64
 		{2A14D06F-120D-4BA1-92CE-E66C005A6A87}.Release|x64.Build.0 = Release|x64
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Debug|Win32.ActiveCfg = Debug|Win32
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Debug|Win32.Build.0 = Debug|Win32
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Debug|x64.ActiveCfg = Debug|x64
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Debug|x64.Build.0 = Debug|x64
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Release|Win32.ActiveCfg = Release|Win32
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Release|Win32.Build.0 = Release|Win32
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Release|x64.ActiveCfg = Release|x64
-		{C623E3F5-B73F-4E55-91A2-81B06734B662}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7469A778-01B5-4AFC-A362-3674D50990BB}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {7469A778-01B5-4AFC-A362-3674D50990BB}
 	EndGlobalSection
 EndGlobal
